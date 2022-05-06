@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% include 'navbar.html' %}
+{% block body %}
+<div class="container">
+    <!-- Poster background -->
+    <div class="row pt-5">
+        <div class="col-md-6 posterPath">
+        <img class="h-50 float-end rounded" src="{{movie.poster}}">
+        </div>
+        <div class="col-md-6 movie-details">
+            <h3 class="mt-5">{{ movie.title }}</h3>
+            <p class="overview"> {{ movie.overview }}</p>
+            <p class="ratings"> <b> {{ movie.vote_average }}</b> - <i>{{ movie.vote_count}} votes </i> </p>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}
