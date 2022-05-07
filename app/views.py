@@ -49,7 +49,6 @@ def search(movie_name):
     movie_name_list = movie_name.split(" ")
     movie_name_format = "+".join(movie_name_list)
     searched_movies = search_movie(movie_name_format)
-    title = f'search results for {movie_name}'
     return render_template('search.html',movies = searched_movies)
 
 
@@ -69,6 +68,7 @@ def new_reviews(id):
         review = form.review.data
         new_review = Review(movie.id,title,movie.poster,review)
         new_review.save_review()
+        print(new_review)
         return redirect(url_for('movie', id = movie.id ))
     title = f'{movie.title} review'
     return render_template('review.html',title = title, form=form, movie=movie)
