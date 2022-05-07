@@ -1,17 +1,44 @@
 {% extends 'base.html'%}
 {% include 'navbar.html' %}
 {% block body %}
+
+{%block styles%}
+<link rel="stylesheet" href="{{url_for('static', filename = 'style.css')}}">
+{%endblock%}
 <div class="container">
     <!-- Poster background -->
     <div class="row pt-5">
-        <div class="col-md-6 posterPath">
-        <img class="h-50 float-end rounded" src="{{movie.poster}}">
+        <div class="col-md-3 mb-2">
+            <img class="h-100 w-100 rounded" src="{{movie.poster}}">
         </div>
+        <hr>
         <div class="col-md-6 movie-details">
-            <h3 class="mt-5">{{ movie.title }}</h3>
+            <h3 class="">{{ movie.title }}</h3>
             <p class="overview"> {{ movie.overview }}</p>
-            <p class="ratings"> <b> {{ movie.vote_average }}</b> - <i>{{ movie.vote_count}} votes </i> </p>
+            <p class="ratings"> <b> {{ movie.vote_average }}
+                </b> - 
+                <i>{{ movie.vote_count}} votes </i> 
+            <button class="btn btn-primary ms-5">
+                <a href="/movie/review/new/{{movie.id}}" class="submit-link text-light">Submit a New Review</a>
+            </button>
+            </p>
+            <hr>
+            <div>
+                <h4>Reviews</h4>
+                {% if reviews %}
+                    {%for review in reviews %}
+                        {{review.title}}
+                        {{review.review}}
+                    {%endfor%}
+                {%else%}
+                    This movie has no reviews
+                {% endif %}
+
+            </div>
+
         </div>
+
+
     </div>
 
 
